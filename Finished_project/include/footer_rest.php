@@ -55,3 +55,6 @@
     <script src="js/myjs.js"></script>
   </body>
 </html>
+ <?php
+$nothing = "nothing";
+ ?>

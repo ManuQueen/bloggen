@@ -49,6 +49,45 @@ function getPostLikes($post_id) {
     echo mysqli_num_rows($result);
 }
 
+//function to get all post user comments
+function get_all_post_comments() {
+    //joining tables
+    return query("SELECT * FROM posts
+        INNER JOIN comments ON posts.post_id = comments.comment_post_id");
+
+}
+
+//function to get all post user comments
+function get_all_post_likes() {
+    //joining tables
+    return query("SELECT * FROM posts
+        INNER JOIN likes ON posts.post_id = likes.post_id");
+
+}
+
+//function to get specific post comments
+function get_post_comments($post_id) {
+    //joining tables
+    return query("SELECT * FROM posts
+        INNER JOIN comments ON posts.post_id = comments.comment_post_id WHERE posts.post_id={$post_id}");
+
+}
+
+//function to get specific post likes
+function get_post_likes($post_id) {
+    //joining tables
+    return query("SELECT * FROM posts
+        INNER JOIN likes ON posts.post_id = likes.post_id WHERE posts.post_id={$post_id}");
+
+}
+
+
+//function to count the number of rows
+function count_records($result) {
+    return mysqli_num_rows($result);
+}
+
+
 function checkIfUserIsLoggedInAndRedirect($redirectLocation=null) {
 
     //using the isLoggedIn fxn to check if user is logged in

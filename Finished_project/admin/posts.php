@@ -236,3 +236,6 @@
 </body>
 
 </html>
+ <?php
+$nothing = "nothing";
+ ?>

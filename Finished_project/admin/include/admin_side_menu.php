@@ -29,3 +29,6 @@
             </div>
           </div>
         </div>
+<?php
+$nothing = "nothing";
+ ?>

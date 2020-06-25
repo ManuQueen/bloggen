@@ -152,17 +152,40 @@
                         $post_image   = $row['post_image'];
                         $post_content = $row['post_content'];
                         $post_tags    = $row['post_tags'];
-
+                        $post_category_id    = $row['post_cat_id'];
 
             ?>
 
 
             <header class="mb-2">
-              <a href="#" class="badge badge-primary">Category</a>
-              <h1<?php echo $post_title; ?>e</h1>
+              <?php
+
+                       $get_cat_title_query = "SELECT * FROM categories WHERE cat_id = $post_category_id";
+                    //sending query in
+                    $result = mysqli_query($conn, $get_cat_title_query);
+
+                    confirmQuery($result);
+
+                    while($row = mysqli_fetch_assoc($result)) {
+                      $post_cat_id = $row['cat_id'];
+                      $post_user_id = $row['user_id'];
+                      $post_cat_title = $row['cat_title'];
+                      //display
+                      if($post_cat_id  == $post_category_id) {
+                        echo "<a href='{$post_cat_id}' class='badge badge badge-primary cat_color'>{$post_cat_title}</a>";
+                      
+                      }else {
+                        echo "No Category";
+                      }
+                    }
+
+                      ?>
+              <!-- <a href="#" class="badge badge-primary">Category</a> -->
+              <h1><?php echo $post_title; ?></h1>
               <div><a href="#0"><?php echo $post_author; ?></a></div>
               <div class="small">Posted on: <time><?php echo $post_date; ?></time></div>
-              <div class="small"><span class="badge badge-primary"><i class="fa fa-thumbs-up" aria-hidden="true"></i> 13 <span class="sr-only">likes</span></span> <span class="badge badge-primary"><i class="fa fa-comments" aria-hidden="true"></i> 3 <span class="sr-only">comments</span></span></div>
+              <!-- likes and comment counts -->
+              <div class="small"><span class="badge badge-primary"><i class="fa fa-thumbs-up" aria-hidden="true"></i> <?php //likes counts ?> <?php $likes_count = count_records(get_post_likes($the_post_id)); echo $likes_count; ?>  <span class="sr-only">likes</span></span> <span class="badge badge-primary"><i class="fa fa-comments" aria-hidden="true"></i> <?php //comment counts ?> <?php $comment_count = count_records(get_post_comments($the_post_id)); echo $comment_count; ?> <span class="sr-only">comments</span></span></div>
               <div class="small">
                 <a href="#0" class="badge badge-secondary"><?php echo $post_tags; ?></a>
               </div>
@@ -252,8 +275,8 @@ function userLikedThisPost1($post_id = '') {
                             <?php } else { ?>
 
                     <div class="row">
-                        <!-- <p class="pull-right login-to-post">You need to <a href="/Finished_project/login.php">Login</a> to like</p> -->
-                        <button class="btn btn-lg btn-primary mb-3"><i class="fa fa-thumbs-up" aria-hidden="true"></i> <span class="sr-only login-to-post">You need to <a href="/Finished_project/login.php">Login</a> to like</span></button>
+                        <p class="pull-right login-to-post">You need to <a href="/Finished_project/login.php">Login</a> to like</p>
+                        <!-- <button class="btn btn-lg btn-primary mb-3"><i class="fa fa-thumbs-up" aria-hidden="true"></i> <span class="sr-only login-to-post">You need to <a href="/Finished_project/login.php">Login</a> to like</span></button> -->
                     </div>
                     
               

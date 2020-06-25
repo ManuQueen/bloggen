@@ -12,3 +12,6 @@
     <title>Blog - Overview: List</title>
 
   </head>
+   <?php
+$nothing = "nothing";
+ ?>

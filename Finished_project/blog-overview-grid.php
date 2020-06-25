@@ -63,7 +63,8 @@
                     //admin showed see everything both draft and published posts
                     //creating query to get elt from post
                     //this LIMIT the number of page shown per page to 5 or $per page
-                   $query = "SELECT * FROM posts LIMIT $page_1, $per_page";
+                   // $query = "SELECT * FROM posts LIMIT $page_1, $per_page";
+                   $query = "SELECT * FROM posts";
 
                 } else {
 
