@@ -1,0 +1,5 @@
+# SIMPLE CMS BLOGGER "BLOGGEN"
+
+## SETUP
+
+Using PHP
